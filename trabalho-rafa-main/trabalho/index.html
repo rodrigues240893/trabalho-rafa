@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-compatible" content="IE=edge">
+    <meta  name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>TRABALHO RAFAEL</title>
+   
+ <style>
+body{
+    background: linear-gradient(135deg, #6b6b6b, #a0a0a0);
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login{
+    width: 380px;
+    background: #044141;
+    padding: 30px 25px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.25);
+    animation: fadeIn 0.8s ease;
+}
+
+h2{
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+label{
+    font-size: 18px;
+    margin-bottom: 5px;
+    display: block;
+    text-align: left;
+    padding-left: 25px;
+}
+
+input{
+    padding: 12px;
+    font-size: 16px;
+    width: 85%;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus{
+    box-shadow: 0px 0px 8px rgba(0,255,255,0.7);
+    transform: scale(1.03);
+}
+
+.botao{
+    margin-top: 10px;
+    width: 90%;
+    padding: 13px;
+    cursor: pointer;
+    background: #000;
+    color: #f2f2f2;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.botao:hover{
+    background-color: #0bc93a;
+    transform: scale(1.05);
+}
+
+/* Animação */
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+</style>
+</head>
+<body>
+    <div class="login">
+
+<h2>CADASTRO DE LOGIN</h2>
+
+<form method="POST" action="conexao.php">
+
+<label for="usuario">Usuário:</label><br>
+<input type="text" id="usuario" name="usuario" required><br>
+
+<label for="senha">Senha:</label><br>
+<input type="password" id="senha" name="senha" required><br>
+
+<label for="confirmasenha">Confirma a Senha:</label><br>
+<input type="password" id="confirmasenha" name="confirmasenha" required><br>
+
+<input class="botao" type="submit"value="cadatrar">
+
+<a href="Tela de Login.php">Já sou cadastrado</a>
+
+</form>
+</div>
+</body>
+</html>

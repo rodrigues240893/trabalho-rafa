@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Quiz Dezembro Vermelho</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #fa0202;
+        text-align: center;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #090909;
+        margin-bottom: 20px;
+    }
+
+    #quiz-box {
+        max-width: 500px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: #eee;
+    }
+
+    button:hover {
+        background: #ddd;
+    }
+
+    .correct {
+        background: #4CAF50 !important;
+        color: white;
+    }
+
+    .wrong {
+        background: #e74c3c !important;
+        color: white;
+    }
+
+    #next-btn {
+        background: #c20000;
+        color: white;
+        margin-top: 10px;
+    }
+
+    #next-btn:hover {
+        background: #a00000;
+    }
+</style>
+</head>
+<body>
+
+<h1>Quiz – Dezembro Vermelho</h1>
+
+<div id="quiz-box">
+    <h2 id="question">Carregando pergunta...</h2>
+    <div id="answers"></div>
+    <button id="next-btn" onclick="nextQuestion()">Próxima pergunta</button>
+    <p id="status"></p>
+</div>
+
+<script>
+const quiz = [
+    {
+        question: "O que representa o Dezembro Vermelho?",
+        answers: [
+            "Campanha de conscientização sobre HIV/AIDS",
+            "Campanha de combate ao câncer",
+            "Campanha sobre depressão"
+        ],
+        correct: 0
+    },
+    {
+        question: "Qual a principal forma de prevenção ao HIV?",
+        answers: [
+            "Usar preservativo",
+            "Beber muita água",
+            "Evitar exercícios físicos"
+        ],
+        correct: 0
+    },
+    {
+        question: "O HIV pode ser transmitido por:",
+        answers: [
+            "Beijo no rosto",
+            "Relação sexual sem preservativo",
+            "Aperto de mão"
+        ],
+        correct: 1
+    },
+    {
+        question: "O exame de HIV pelo SUS é:",
+        answers: [
+            "Pago",
+            "Gratuito e sigiloso",
+            "Feito apenas em hospitais particulares"
+        ],
+        correct: 1
+    },
+    {
+        question: "A AIDS é:",
+        answers: [
+            "Uma síndrome causada pelo HIV",
+            "Um tipo de alergia",
+            "Uma doença que só atinge idosos"
+        ],
+        correct: 0
+    }
+];
+
+let index = 0;
+let score = 0;
+
+function loadQuestion() {
+    const current = quiz[index];
+    document.getElementById("question").textContent = current.question;
+
+    const answersDiv = document.getElementById("answers");
+    answersDiv.innerHTML = "";
+
+    current.answers.forEach((text, i) => {
+        const btn = document.createElement("button");
+        btn.textContent = text;
+        btn.onclick = () => checkAnswer(btn, i);
+        answersDiv.appendChild(btn);
+    });
+
+    document.getElementById("status").textContent = 
+        `Pergunta ${index + 1} de ${quiz.length}`;
+}
+
+function checkAnswer(button, choice) {
+    const correct = quiz[index].correct;
+    const buttons = document.querySelectorAll("#answers button");
+
+    buttons.forEach(b => b.disabled = true);
+
+    if (choice === correct) {
+        button.classList.add("correct");
+        score++;
+    } else {
+        button.classList.add("wrong");
+        buttons[correct].classList.add("correct");
+    }
+}
+
+function nextQuestion() {
+    if (index < quiz.length - 1) {
+        index++;
+        loadQuestion();
+    } else {
+        document.getElementById("quiz-box").innerHTML = `
+            <h2>Fim do jogo!</h2>
+            <p>Você acertou <strong>${score}</strong> de <strong>${quiz.length}</strong> perguntas.</p>
+        `;
+    }
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
